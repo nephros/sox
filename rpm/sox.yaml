@@ -104,6 +104,7 @@ NoIconCache: true
 #AutoSubPackages:
 #  - doc
 Files:
-  - '%license LICENSE'
+  - '%license LICENSE.GPL'
+  - '%license LICENSE.LGPL'
   - '%{_bindir}/%{name}'
   - '%{_libdir}/*.so.*'

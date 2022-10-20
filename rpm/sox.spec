@@ -89,7 +89,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%license LICENSE
+%license LICENSE.GPL
+%license LICENSE.LGPL
 %{_bindir}/%{name}
 %{_libdir}/*.so.*
 # >> files
