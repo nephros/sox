@@ -19,17 +19,18 @@ Source100:  sox.yaml
 Source101:  sox-rpmlintrc
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
-BuildRequires:  pkgconfig(libpng)
-BuildRequires:  pkgconfig(libpng12)
-BuildRequires:  pkgconfig(libpng15)
-BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(flac++)
+BuildRequires:  pkgconfig(id3tag)
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(libpulse)
+BuildRequires:  pkgconfig(ogg)
+BuildRequires:  pkgconfig(opus)
+BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  autoconf
-BuildRequires:  pulseautdio-devel
-BuildRequires:  vorbis-devel
-BuildRequires:  opus-devel
-BuildRequires:  ogg-devel
+BuildRequires:  libtool
+BuildRequires:  libtool-ltdl
+BuildRequires:  libtool-ltdl-devel
 
 %description
 SoX is a cross-platform command line utility that can convert various
@@ -68,7 +69,14 @@ Url:
 # >> build pre
 # << build pre
 
-%reconfigure --disable-static
+%reconfigure --disable-static \
+    --with-ltdl \
+    --without-ladspa \
+    --with-oggvorbis=dyn \
+    --with-pulseaudio=dyn \
+    --with-sndfile=dyn \
+    --without-oss
+
 make %{?_smp_mflags}
 
 # >> build post

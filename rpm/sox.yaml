@@ -56,31 +56,34 @@ RpmLintIgnore:
 #Requires:
 PkgBR:
   - autoconf
-  - pulseautdio-devel
-  - vorbis-devel
-  - opus-devel
-  - ogg-devel
+  - libtool
+  - libtool-ltdl
+  - libtool-ltdl-devel
 PkgConfigBR:
-  - libpng
-  - libpng12
-  - libpng15
-  - sndfile
   - flac
   - flac++
+  - id3tag
+  - libpng
+  - libpulse
+  - ogg
+  - opus
+  - sndfile
 
 Configure: reconfigure
-#ConfigOptions:
+ConfigOptions:
+  # '--with-dyn-default'
+  - '--with-ltdl'
 #  '--without-magic         Don't try to use magic
 #  '--without-png           Don't try to use png
-#  '--without-ladspa        Don't try to use LADSPA
+  - '--without-ladspa'
 #  '--with-ladspa-path      Default search path for LADSPA plugins
 #  '--without-mad           Don't try to use MAD (MP3 Audio Decoder)
 #  '--without-id3tag        Don't try to use id3tag
 #  '--without-lame          Don't try to use LAME (LAME Ain't an MP3 Encoder)
 #  '--without-twolame       Don't try to use Twolame (MP2 Audio Encoder)
-#  '--with-oggvorbis=dyn    load oggvorbis dynamically
-#  '--with-opus=dyn         load opus dynamically
-#  '--with-flac=dyn         load flac dynamically
+  -  '--with-oggvorbis=dyn'    #load oggvorbis dynamically
+  #  '--with-opus=dyn'         #load opus dynamically
+  #  '--with-flac=dyn'         #load flac dynamically
 #  '--with-amrwb=dyn        load amrwb dynamically
 #  '--with-amrnb=dyn        load amrnb dynamically
 #  '--with-wavpack=dyn      load wavpack dynamically
@@ -88,10 +91,10 @@ Configure: reconfigure
 #  '--with-coreaudio=dyn    load coreaudio dynamically
 #  '--with-alsa=dyn         load alsa dynamically
 #  '--with-ao=dyn           load ao dynamically
-#  '--with-pulseaudio=dyn   load pulseaudio dynamically
+  - '--with-pulseaudio=dyn'  #load pulseaudio dynamically
 #  '--with-waveaudio=dyn    load waveaudio dynamically
-#  '--with-sndfile=dyn      load sndfile dynamically
-#  '--with-oss=dyn          load oss dynamically
+  - '--with-sndfile=dyn'    # load sndfile dynamically
+  - '--without-oss'
 #  '--with-sunaudio=dyn     load sunaudio dynamically
 #  '--with-mp3=dyn          load mp3 dynamically
 #  '--with-gsm=dyn          load gsm dynamically
