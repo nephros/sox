@@ -12,7 +12,7 @@ Summary:    the Swiss Army knife of sound processing programs
 Version:    14.4.2
 Release:    0
 Group:      Applications
-License:    ASL 2.0
+License:    GPLv2+ and LGPLv2.1+
 URL:        https://sox.sourceforge.net
 Source0:    %{name}-%{version}.tar.gz
 Source100:  sox.yaml
@@ -59,7 +59,7 @@ Url:
 # >> build pre
 # << build pre
 
-%configure --disable-static
+%reconfigure --disable-static
 make %{?_smp_mflags}
 
 # >> build post
