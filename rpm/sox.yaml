@@ -1,0 +1,74 @@
+Name: sox
+Summary: the Swiss Army knife of sound processing programs
+Version: 14.4.2
+Release: 0
+Group: Applications
+#License: Apache-2.0
+#License: MIT
+License: ASL 2.0
+URL: https://sox.sourceforge.net
+SCM: https://git.code.sf.net/p/sox/code sox-code
+Sources:
+    - '%{name}-%{version}.tar.gz'
+Description: |
+    SoX is a cross-platform command line utility that can convert various
+    formats of computer audio files in to other formats. It can also apply
+    various effects to these sound files, and, as an added bonus, SoX can play
+    and record audio files on most platforms.
+
+    %if "%{?vendor}" == "chum"
+    PackageName: Template Application
+    Type: console-application
+    DeveloperName: Peter G.
+    DeveloperLogin: nephros
+    PackagerName: nephros
+    Categories:
+     - Media
+     - Audio
+     - Utility
+    Custom:
+      Repo: %{url}
+    Icon: %{url}/sox-logo.png
+    Screenshots:
+     - %{url}/screenshot1.png
+    Url:
+      Homepage: %{url}
+      Help: %{url}/Docs/Documentation
+    %endif
+
+SetupOptions: -q -n %{name}-%{version}/upstream
+RpmLintIgnore:
+  - 'summary-too-long'
+  - 'no-changelogname-tag'
+  - 'invalid-url'
+  - 'desktopfile-without-binary'
+  - 'explicit-lib-dependency'
+#Macros:
+#  - 'foo;bar'
+#  - |
+#    spectacle_bug; hack_fix
+#    # Spectacular spectacle hack:
+#    #   abuse Macros to work around the Macro-deleting bug in 0.32
+#    #   also, add a conditional dep:
+#    %if 0%{?sailfishos_version} >= 30400
+#    BuildRequires: some-package
+#    %endif
+#Patches:
+#  - 'baz'
+Requires:
+PkgBR:
+  - qt5-qttools-linguist
+  - qt5-qmake
+  - sailfish-svg2png
+  - qml-rpm-macros
+PkgConfigBR:
+#    - ^^^
+#Configure: none
+#Builder: qmake5
+NoIconCache: true
+#BuildArch: noarch
+#AutoSubPackages:
+#  - doc
+Files:
+  - '%license LICENSE'
+  - '%{_bindir}/%{name}'
