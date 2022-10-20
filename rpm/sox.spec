@@ -17,10 +17,19 @@ URL:        https://sox.sourceforge.net
 Source0:    %{name}-%{version}.tar.gz
 Source100:  sox.yaml
 Source101:  sox-rpmlintrc
-BuildRequires:  qt5-qttools-linguist
-BuildRequires:  qt5-qmake
-BuildRequires:  sailfish-svg2png
-BuildRequires:  qml-rpm-macros
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(libpng12)
+BuildRequires:  pkgconfig(libpng15)
+BuildRequires:  pkgconfig(sndfile)
+BuildRequires:  pkgconfig(flac)
+BuildRequires:  pkgconfig(flac++)
+BuildRequires:  autoconf
+BuildRequires:  pulseautdio-devel
+BuildRequires:  vorbis-devel
+BuildRequires:  opus-devel
+BuildRequires:  ogg-devel
 
 %description
 SoX is a cross-platform command line utility that can convert various
@@ -74,9 +83,14 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
 %files
 %defattr(-,root,root,-)
 %license LICENSE
 %{_bindir}/%{name}
+%{_libdir}/*.so.*
 # >> files
 # << files

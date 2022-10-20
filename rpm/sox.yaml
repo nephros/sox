@@ -53,14 +53,21 @@ RpmLintIgnore:
 #    %endif
 #Patches:
 #  - 'baz'
-Requires:
+#Requires:
 PkgBR:
-  - qt5-qttools-linguist
-  - qt5-qmake
-  - sailfish-svg2png
-  - qml-rpm-macros
+  - autoconf
+  - pulseautdio-devel
+  - vorbis-devel
+  - opus-devel
+  - ogg-devel
 PkgConfigBR:
-#    - ^^^
+  - libpng
+  - libpng12
+  - libpng15
+  - sndfile
+  - flac
+  - flac++
+
 Configure: reconfigure
 #ConfigOptions:
 #  '--without-magic         Don't try to use magic
@@ -99,3 +106,4 @@ NoIconCache: true
 Files:
   - '%license LICENSE'
   - '%{_bindir}/%{name}'
+  - '%{_libdir}/*.so.*'
