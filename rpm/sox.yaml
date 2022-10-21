@@ -59,21 +59,30 @@ PkgBR:
   - libtool
   - libtool-ltdl
   - libtool-ltdl-devel
+  - file-devel # for magic support
 PkgConfigBR:
+  # alsa
   - flac
   - flac++
   - id3tag
+  - libavcodec
+  - libavformat
+  - libavutil
   - libpng
   - libpulse
+  - libpulse-simple
   - ogg
   - opus
   - sndfile
+  - vorbis
+  - vorbisenc
+  - vorbisfile
+  - zlib
 
 Configure: reconfigure
 ConfigOptions:
   - '--with-distro="Sailfish OS (%{vendor})"'
   # '--with-dyn-default'
-  - '--with-ltdl'
 #  '--without-magic         Don't try to use magic
 #  '--without-png           Don't try to use png
   - '--without-ladspa'
@@ -81,8 +90,8 @@ ConfigOptions:
 #  '--without-mad           Don't try to use MAD (MP3 Audio Decoder)
 #  '--without-id3tag        Don't try to use id3tag
 #  '--without-lame          Don't try to use LAME (LAME Ain't an MP3 Encoder)
-  - '--without-twolame'     # Don't try to use Twolame (MP2 Audio Encoder)
-  -  '--with-oggvorbis=dyn'    #load oggvorbis dynamically
+  # '--without-twolame'     # Don't try to use Twolame (MP2 Audio Encoder)
+  #  '--with-oggvorbis=dyn'    #load oggvorbis dynamically
   #  '--with-opus=dyn'         #load opus dynamically
   #  '--with-flac=dyn'         #load flac dynamically
 #  '--with-amrwb=dyn        load amrwb dynamically
@@ -93,9 +102,9 @@ ConfigOptions:
 #  '--with-alsa=dyn         load alsa dynamically
   - '--without-alsa'         # load alsa dynamically
 #  '--with-ao=dyn           load ao dynamically
-  - '--with-pulseaudio=dyn'  #load pulseaudio dynamically
+  # '--with-pulseaudio=dyn'  #load pulseaudio dynamically
 #  '--with-waveaudio=dyn    load waveaudio dynamically
-  - '--with-sndfile=dyn'    # load sndfile dynamically
+  # '--with-sndfile=dyn'    # load sndfile dynamically
   - '--without-oss'
 #  '--with-sunaudio=dyn     load sunaudio dynamically
 #  '--with-mp3=dyn          load mp3 dynamically
@@ -119,17 +128,19 @@ SubPackages:
         - '%{_libdir}/*.so'
         - '%{_libdir}/*/*.pc'
         - '%{_includedir}/*.h'
+        - '%{_mandir}/man3/*'
 
     - Name:  libs
       Summary: Libraries for %{name}
       Group: Development/Libraries
       Files:
         - '%{_libdir}/*.so.*'
-        - '%{_libdir}/sox/*.so'
+        # '%{_libdir}/sox/*.so' # only with dyn enabled
 
     - Name:  doc
       Summary: Documentation for %{name}
       Group: Documentation
       Files:
         # '%{_docdir}/*'
-        - '%{_mandir}/*'
+        - '%{_mandir}/man1/*'
+        - '%{_mandir}/man7/*'

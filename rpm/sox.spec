@@ -20,15 +20,24 @@ Source101:  sox-rpmlintrc
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(flac++)
 BuildRequires:  pkgconfig(id3tag)
+BuildRequires:  pkgconfig(libavcodec)
+BuildRequires:  pkgconfig(libavformat)
+BuildRequires:  pkgconfig(libavutil)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libpulse)
+BuildRequires:  pkgconfig(libpulse-simple)
 BuildRequires:  pkgconfig(ogg)
 BuildRequires:  pkgconfig(opus)
 BuildRequires:  pkgconfig(sndfile)
+BuildRequires:  pkgconfig(vorbis)
+BuildRequires:  pkgconfig(vorbisenc)
+BuildRequires:  pkgconfig(vorbisfile)
+BuildRequires:  pkgconfig(zlib)
 BuildRequires:  autoconf
 BuildRequires:  libtool
 BuildRequires:  libtool-ltdl
 BuildRequires:  libtool-ltdl-devel
+BuildRequires:  file-devel
 
 %description
 SoX is a cross-platform command line utility that can convert various
@@ -95,13 +104,8 @@ Requires:   %{name} = %{version}-%{release}
 
 %reconfigure --disable-static \
     --with-distro="Sailfish OS (%{vendor})" \
-    --with-ltdl \
     --without-ladspa \
-    --without-twolame \
-    --with-oggvorbis=dyn \
     --without-alsa \
-    --with-pulseaudio=dyn \
-    --with-sndfile=dyn \
     --without-oss
 
 make %{?_smp_mflags}
@@ -135,18 +139,19 @@ rm -rf %{buildroot}
 %{_libdir}/*.so
 %{_libdir}/*/*.pc
 %{_includedir}/*.h
+%{_mandir}/man3/*
 # >> files devel
 # << files devel
 
 %files libs
 %defattr(-,root,root,-)
 %{_libdir}/*.so.*
-%{_libdir}/sox/*.so
 # >> files libs
 # << files libs
 
 %files doc
 %defattr(-,root,root,-)
-%{_mandir}/*
+%{_mandir}/man1/*
+%{_mandir}/man7/*
 # >> files doc
 # << files doc
