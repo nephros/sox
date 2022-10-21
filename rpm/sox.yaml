@@ -1,6 +1,6 @@
 Name: sox
 Summary: the Swiss Army knife of sound processing programs
-Version: 14.4.2
+Version: 14.4.1     # last version with ffmpeg
 Release: 0
 Group: Applications
 License: GPLv2+ and LGPLv2+
@@ -65,9 +65,9 @@ PkgConfigBR:
   - flac
   - flac++
   - id3tag
-  # libavcodec          # ffmpeg support has been
-  # libavformat         # removed in the current version
-  # libavutil           # 14.4.2
+  - libavcodec          # ffmpeg support has been
+  - libavformat         # removed in the current version
+  - libavutil           # 14.4.2
   - libpng
   - libpulse
   - libpulse-simple
@@ -82,6 +82,7 @@ PkgConfigBR:
 Configure: reconfigure
 ConfigOptions:
   - '--with-distro="Sailfish OS (%{vendor})"'
+  - '--with-ffmpeg'
   # '--with-dyn-default'
 #  '--without-magic         Don't try to use magic
 #  '--without-png           Don't try to use png

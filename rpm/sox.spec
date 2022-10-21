@@ -9,7 +9,7 @@ Name:       sox
 # << macros
 
 Summary:    the Swiss Army knife of sound processing programs
-Version:    14.4.2
+Version:    14.4.1
 Release:    0
 Group:      Applications
 License:    GPLv2+ and LGPLv2+
@@ -20,6 +20,9 @@ Source101:  sox-rpmlintrc
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(flac++)
 BuildRequires:  pkgconfig(id3tag)
+BuildRequires:  pkgconfig(libavcodec)
+BuildRequires:  pkgconfig(libavformat)
+BuildRequires:  pkgconfig(libavutil)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(libpulse-simple)
@@ -101,6 +104,7 @@ Requires:   %{name} = %{version}-%{release}
 
 %reconfigure --disable-static \
     --with-distro="Sailfish OS (%{vendor})" \
+    --with-ffmpeg \
     --without-ladspa \
     --without-alsa \
     --without-oss
