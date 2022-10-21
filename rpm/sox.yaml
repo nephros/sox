@@ -1,6 +1,6 @@
 Name: sox
 Summary: the Swiss Army knife of sound processing programs
-Version: 14.4.1     # last version with ffmpeg
+Version: 14.3.2     # last version with ffmpeg
 Release: 0
 Group: Applications
 License: GPLv2+ and LGPLv2+
@@ -60,6 +60,7 @@ PkgBR:
   - libtool-ltdl
   - libtool-ltdl-devel
   - file-devel # for magic support
+  - ffmpeg-devel
 PkgConfigBR:
   # alsa
   - flac

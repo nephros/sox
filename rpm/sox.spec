@@ -9,7 +9,7 @@ Name:       sox
 # << macros
 
 Summary:    the Swiss Army knife of sound processing programs
-Version:    14.4.1
+Version:    14.3.2
 Release:    0
 Group:      Applications
 License:    GPLv2+ and LGPLv2+
@@ -38,6 +38,7 @@ BuildRequires:  libtool
 BuildRequires:  libtool-ltdl
 BuildRequires:  libtool-ltdl-devel
 BuildRequires:  file-devel
+BuildRequires:  ffmpeg-devel
 
 %description
 SoX is a cross-platform command line utility that can convert various
@@ -153,7 +154,7 @@ rm -rf %{buildroot}
 
 %files doc
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog NEWS README src/monkey.wav
+%doc AUTHORS COPYING ChangeLog NEWS README.sh src/monkey.wav
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 # >> files doc
