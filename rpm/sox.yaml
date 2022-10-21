@@ -71,6 +71,7 @@ PkgConfigBR:
 
 Configure: reconfigure
 ConfigOptions:
+  - '--with-distro="Sailfish OS (%{vendor})"'
   # '--with-dyn-default'
   - '--with-ltdl'
 #  '--without-magic         Don't try to use magic

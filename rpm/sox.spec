@@ -94,6 +94,7 @@ Requires:   %{name} = %{version}-%{release}
 # << build pre
 
 %reconfigure --disable-static \
+    --with-distro="Sailfish OS (%{vendor})" \
     --with-ltdl \
     --without-ladspa \
     --without-twolame \
