@@ -7,6 +7,7 @@ Name:       sox
 
 # >> macros
 # << macros
+%define soname 3
 
 Summary:    the Swiss Army knife of sound processing programs
 Version:    14.4.2
@@ -71,14 +72,14 @@ Requires:   %{name} = %{version}-%{release}
 %description devel
 %{summary}.
 
-%package libs
+%package -n lib%{name}%{soname}
 Summary:    Libraries for %{name}
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
-%description libs
+%description -n lib%{name}%{soname}
 %{summary}.
 
 %package doc
@@ -120,9 +121,9 @@ rm -rf %{buildroot}
 ./README.sh
 # << install post
 
-%post libs -p /sbin/ldconfig
+%post -n lib%{name}%{soname} -p /sbin/ldconfig
 
-%postun libs -p /sbin/ldconfig
+%postun -n lib%{name}%{soname} -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
@@ -141,15 +142,15 @@ rm -rf %{buildroot}
 # >> files devel
 # << files devel
 
-%files libs
+%files -n lib%{name}%{soname}
 %defattr(-,root,root,-)
 %{_libdir}/*.so.*
-# >> files libs
-# << files libs
+# >> files lib%{name}%{soname}
+# << files lib%{name}%{soname}
 
 %files doc
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog NEWS README src/monkey.wav
+%doc AUTHORS COPYING ChangeLog NEWS README.sh src/monkey.wav
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 # >> files doc

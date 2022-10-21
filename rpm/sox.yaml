@@ -41,8 +41,8 @@ RpmLintIgnore:
   - 'invalid-url'
   - 'desktopfile-without-binary'
   - 'explicit-lib-dependency'
-#Macros:
-#  - 'foo;bar'
+Macros:
+  - 'soname;3'
 #  - |
 #    spectacle_bug; hack_fix
 #    # Spectacular spectacle hack:
@@ -130,7 +130,8 @@ SubPackages:
         - '%{_includedir}/*.h'
         - '%{_mandir}/man3/*'
 
-    - Name:  libs
+    - Name:  lib%{name}%{soname}
+      AsWholeName: true
       Summary: Libraries for %{name}
       Group: Development/Libraries
       Files:
