@@ -101,6 +101,7 @@ Requires:   %{name} = %{version}-%{release}
 # << build pre
 
 %reconfigure --disable-static \
+    --disable-stack-protector \
     --with-distro="Sailfish OS (%{vendor})" \
     --without-ladspa \
     --without-alsa \

@@ -81,6 +81,7 @@ PkgConfigBR:
 
 Configure: reconfigure
 ConfigOptions:
+  - '--disable-stack-protector'     # leads to dep on libssp, not sure what provides that
   - '--with-distro="Sailfish OS (%{vendor})"'
   # '--with-dyn-default'
 #  '--without-magic         Don't try to use magic
