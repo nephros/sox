@@ -60,6 +60,7 @@ PkgBR:
   - libtool-ltdl
   - libtool-ltdl-devel
   - file-devel # for magic support
+  - bzip2 # for man page compression
 PkgConfigBR:
   # alsa
   - flac

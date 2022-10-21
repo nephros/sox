@@ -36,6 +36,7 @@ BuildRequires:  libtool
 BuildRequires:  libtool-ltdl
 BuildRequires:  libtool-ltdl-devel
 BuildRequires:  file-devel
+BuildRequires:  bzip2
 
 %description
 SoX is a cross-platform command line utility that can convert various
