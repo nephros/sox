@@ -80,7 +80,7 @@ ConfigOptions:
 #  '--without-mad           Don't try to use MAD (MP3 Audio Decoder)
 #  '--without-id3tag        Don't try to use id3tag
 #  '--without-lame          Don't try to use LAME (LAME Ain't an MP3 Encoder)
-#  '--without-twolame       Don't try to use Twolame (MP2 Audio Encoder)
+  - '--without-twolame'     # Don't try to use Twolame (MP2 Audio Encoder)
   -  '--with-oggvorbis=dyn'    #load oggvorbis dynamically
   #  '--with-opus=dyn'         #load opus dynamically
   #  '--with-flac=dyn'         #load flac dynamically
@@ -90,6 +90,7 @@ ConfigOptions:
 #  '--with-sndio=dyn        load sndio dynamically
 #  '--with-coreaudio=dyn    load coreaudio dynamically
 #  '--with-alsa=dyn         load alsa dynamically
+  - '--without-alsa'         # load alsa dynamically
 #  '--with-ao=dyn           load ao dynamically
   - '--with-pulseaudio=dyn'  #load pulseaudio dynamically
 #  '--with-waveaudio=dyn    load waveaudio dynamically
@@ -104,10 +105,30 @@ ConfigOptions:
 #Builder: cmake
 NoIconCache: true
 #BuildArch: noarch
-#AutoSubPackages:
-#  - doc
 Files:
   - '%license LICENSE.GPL'
   - '%license LICENSE.LGPL'
-  - '%{_bindir}/%{name}'
-  - '%{_libdir}/*.so.*'
+  - '%{_bindir}/*'
+
+SubPackages:
+    - Name:  devel
+      Summary: Development files for %{name}
+      Group: Development/Libraries
+      Files:
+        - '%{_libdir}/*.so'
+        - '%{_libdir}/*/*.pc'
+        - '%{_includedir}/*.h'
+
+    - Name:  libs
+      Summary: Libraries for %{name}
+      Group: Development/Libraries
+      Files:
+        - '%{_libdir}/*.so.*'
+        - '%{_libdir}/sox/*.so'
+
+    - Name:  doc
+      Summary: Documentation for %{name}
+      Group: Documentation
+      Files:
+        # '%{_docdir}/*'
+        - '%{_mandir}/*'

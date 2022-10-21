@@ -17,8 +17,6 @@ URL:        https://sox.sourceforge.net
 Source0:    %{name}-%{version}.tar.gz
 Source100:  sox.yaml
 Source101:  sox-rpmlintrc
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(flac++)
 BuildRequires:  pkgconfig(id3tag)
@@ -59,6 +57,32 @@ Url:
 %endif
 
 
+%package devel
+Summary:    Development files for %{name}
+Group:      Development/Libraries
+Requires:   %{name} = %{version}-%{release}
+
+%description devel
+%{summary}.
+
+%package libs
+Summary:    Libraries for %{name}
+Group:      Development/Libraries
+Requires:   %{name} = %{version}-%{release}
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+
+%description libs
+%{summary}.
+
+%package doc
+Summary:    Documentation for %{name}
+Group:      Documentation
+Requires:   %{name} = %{version}-%{release}
+
+%description doc
+%{summary}.
+
 %prep
 %setup -q -n %{name}-%{version}/upstream
 
@@ -72,7 +96,9 @@ Url:
 %reconfigure --disable-static \
     --with-ltdl \
     --without-ladspa \
+    --without-twolame \
     --with-oggvorbis=dyn \
+    --without-alsa \
     --with-pulseaudio=dyn \
     --with-sndfile=dyn \
     --without-oss
@@ -91,15 +117,35 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
-%post -p /sbin/ldconfig
+%post libs -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
 %license LICENSE.GPL
 %license LICENSE.LGPL
-%{_bindir}/%{name}
-%{_libdir}/*.so.*
+%{_bindir}/*
 # >> files
 # << files
+
+%files devel
+%defattr(-,root,root,-)
+%{_libdir}/*.so
+%{_libdir}/*/*.pc
+%{_includedir}/*.h
+# >> files devel
+# << files devel
+
+%files libs
+%defattr(-,root,root,-)
+%{_libdir}/*.so.*
+%{_libdir}/sox/*.so
+# >> files libs
+# << files libs
+
+%files doc
+%defattr(-,root,root,-)
+%{_mandir}/*
+# >> files doc
+# << files doc
