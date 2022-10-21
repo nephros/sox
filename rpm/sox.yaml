@@ -65,14 +65,14 @@ PkgConfigBR:
   - flac
   - flac++
   - id3tag
-  - libavcodec
-  - libavformat
-  - libavutil
+  # libavcodec          # ffmpeg support has been
+  # libavformat         # removed in the current version
+  # libavutil           # 14.4.2
   - libpng
   - libpulse
   - libpulse-simple
   - ogg
-  - opus
+  - opus        # actually we need opusfile
   - sndfile
   - vorbis
   - vorbisenc
@@ -141,6 +141,6 @@ SubPackages:
       Summary: Documentation for %{name}
       Group: Documentation
       Files:
-        # '%{_docdir}/*'
+        - '%doc AUTHORS COPYING ChangeLog NEWS README src/monkey.wav'
         - '%{_mandir}/man1/*'
         - '%{_mandir}/man7/*'

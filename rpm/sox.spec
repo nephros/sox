@@ -20,9 +20,6 @@ Source101:  sox-rpmlintrc
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(flac++)
 BuildRequires:  pkgconfig(id3tag)
-BuildRequires:  pkgconfig(libavcodec)
-BuildRequires:  pkgconfig(libavformat)
-BuildRequires:  pkgconfig(libavutil)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(libpulse-simple)
@@ -151,6 +148,7 @@ rm -rf %{buildroot}
 
 %files doc
 %defattr(-,root,root,-)
+%doc AUTHORS COPYING ChangeLog NEWS README src/monkey.wav
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 # >> files doc
